@@ -124,7 +124,7 @@ class _PercentCalculatorState extends State<PercentCalculator> {
   double _calculatePercentage(
       String percentageValue, String value, double answer) {
     setState(() {
-      answer = int.parse(percentageValue) * int.parse(value) / 100;
+      answer = double.parse(percentageValue) * double.parse(value) / 100;
       displayAnswer = answer.toString();
     });
     return answer;
