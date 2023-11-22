@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: DefaultTabController(
-        length: 2,
+        length: 3,
         child: Scaffold(
           backgroundColor: Colors.white,
           appBar: _showCalculatorAppbar(),
@@ -32,6 +32,7 @@ class Home extends StatelessWidget {
         indicatorColor: Colors.transparent,
         tabs: [
           Tab(icon: Icon(Icons.percent)),
+          Tab(icon: Icon(Icons.show_chart_rounded)),
           Tab(icon: Icon(Icons.calculate)),
         ],
       ),
@@ -40,6 +41,7 @@ class Home extends StatelessWidget {
 
   //Show UI for calculator
   Widget _showUI() {
-    return const TabBarView(children: [PercentCalculator(), Calculator()]);
+    return TabBarView(
+        children: [const PercentCalculator(), Container(), const Calculator()]);
   }
 }
