@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Do Math',
       theme: ThemeData(
+        useMaterial3: true,
         primarySwatch: Colors.blue,
       ),
       home: const Home(),

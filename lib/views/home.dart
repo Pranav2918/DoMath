@@ -1,6 +1,7 @@
 import 'package:domath/views/calculator.dart';
 import 'package:domath/views/percent_calculator.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Home extends StatelessWidget {
   const Home({super.key});
@@ -24,10 +25,12 @@ class Home extends StatelessWidget {
     return AppBar(
       elevation: 0.0,
       backgroundColor: Colors.black,
-      centerTitle: true,
-      title: const Text("Do Math"),
+      title: Text(
+        "Do Math",
+        style: GoogleFonts.aBeeZee(color: Colors.white),
+      ),
       bottom: const TabBar(
-        labelColor: Color.fromARGB(255, 0, 128, 17),
+        labelColor: Colors.green,
         unselectedLabelColor: Colors.white,
         indicatorColor: Colors.transparent,
         tabs: [

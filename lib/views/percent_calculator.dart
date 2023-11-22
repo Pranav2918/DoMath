@@ -1,6 +1,5 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class PercentCalculator extends StatefulWidget {
   const PercentCalculator({super.key});
@@ -20,22 +19,21 @@ class _PercentCalculatorState extends State<PercentCalculator> {
     return Column(
       children: [
         const Expanded(child: SizedBox()),
-        const Padding(
-          padding: EdgeInsets.all(8.0),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
           child: Text("You can simply calculate percentage of any number",
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500)),
+              style: GoogleFonts.aBeeZee(
+                  fontSize: 20.0, fontWeight: FontWeight.w500)),
         ),
         const SizedBox(height: 20.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               "What is",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
+              style: GoogleFonts.aBeeZee(
+                  fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
             const SizedBox(width: 10.0),
             Card(
@@ -44,40 +42,35 @@ class _PercentCalculatorState extends State<PercentCalculator> {
                   padding: const EdgeInsets.only(left: 10),
                   decoration: BoxDecoration(
                       border: Border.all(
-                          color: const Color.fromARGB(255, 0, 128, 17))),
+                          color: Colors.green)),
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width / 5,
                     height: 50,
                     child: TextFormField(
-                      cursorColor: const Color.fromARGB(255, 0, 128, 17),
+                      cursorColor: Colors.green,
                       keyboardType: TextInputType.number,
                       controller: _percentController,
-                      decoration:
-                          const InputDecoration(border: InputBorder.none),
+                      decoration: const InputDecoration(
+                          border: InputBorder.none, fillColor: Colors.white),
                     ),
                   ),
                 )),
             const SizedBox(width: 10.0),
-            const Text(
-              "% of",
-              style: TextStyle(
-                  fontSize: 20,
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold),
-            ),
+            Text("% of",
+                style: GoogleFonts.aBeeZee(
+                    fontSize: 20.0, fontWeight: FontWeight.bold)),
             const SizedBox(width: 10.0),
             Card(
-                elevation: 2.0,
+                elevation: 5.0,
                 child: Container(
                   padding: const EdgeInsets.only(left: 10),
-                  decoration: BoxDecoration(
-                      border: Border.all(
-                          color: const Color.fromARGB(255, 0, 128, 17))),
+                  decoration:
+                      BoxDecoration(border: Border.all(color: Colors.green)),
                   child: SizedBox(
                     height: 50,
                     width: MediaQuery.of(context).size.width / 5,
                     child: TextFormField(
-                      cursorColor: const Color.fromARGB(255, 0, 128, 17),
+                      cursorColor: Colors.green,
                       controller: _valueController,
                       keyboardType: TextInputType.number,
                       decoration:
@@ -92,12 +85,13 @@ class _PercentCalculatorState extends State<PercentCalculator> {
             onPressed: () => _calculatePercentage(
                 _percentController.text, _valueController.text, answer),
             style: ElevatedButton.styleFrom(
+                foregroundColor: Colors.white,
                 minimumSize: const Size(150, 44),
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10.0)),
-                backgroundColor: const Color.fromARGB(255, 0, 128, 17)),
-            child: const Text("Calculate",
-                style: TextStyle(color: Colors.white, fontSize: 18))),
+                backgroundColor: Colors.green),
+            child:
+                Text("Calculate", style: GoogleFonts.aBeeZee(fontSize: 18.0))),
         const SizedBox(height: 30.0),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -110,7 +104,7 @@ class _PercentCalculatorState extends State<PercentCalculator> {
             const SizedBox(width: 10.0),
             Text(displayAnswer,
                 style: const TextStyle(
-                    color: const Color.fromARGB(255, 0, 128, 17),
+                    color: Colors.green,
                     fontSize: 24,
                     fontWeight: FontWeight.bold)),
           ],
@@ -123,10 +117,18 @@ class _PercentCalculatorState extends State<PercentCalculator> {
   //Calculate percentage
   double _calculatePercentage(
       String percentageValue, String value, double answer) {
-    setState(() {
-      answer = double.parse(percentageValue) * double.parse(value) / 100;
-      displayAnswer = answer.toString();
-    });
+    if (percentageValue.isNotEmpty && value.isNotEmpty) {
+      setState(() {
+        answer = double.parse(percentageValue) * double.parse(value) / 100;
+        displayAnswer = answer.toString();
+      });
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          backgroundColor: Colors.green,
+          duration: const Duration(seconds: 1),
+          content: Text("Field aren't correct!",
+              style: GoogleFonts.aBeeZee(fontSize: 18))));
+    }
     return answer;
   }
 }

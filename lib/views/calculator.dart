@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:math_expressions/math_expressions.dart';
 
 class Calculator extends StatefulWidget {
@@ -49,7 +50,8 @@ class _CalculatorState extends State<Calculator> {
                   alignment: Alignment.centerRight,
                   child: Text(
                     enteredValue,
-                    style: const TextStyle(fontSize: 22, color: Colors.black),
+                    style: GoogleFonts.aBeeZee(
+                        fontSize: 22.0, color: Colors.black),
                   ),
                 ),
                 Container(
@@ -57,10 +59,8 @@ class _CalculatorState extends State<Calculator> {
                   alignment: Alignment.centerRight,
                   child: Text(
                     answer,
-                    style: const TextStyle(
-                        fontSize: 30,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold),
+                    style: GoogleFonts.aBeeZee(
+                        fontSize: 30.0, color: Colors.black),
                   ),
                 )
               ]),
@@ -136,7 +136,7 @@ class _CalculatorState extends State<Calculator> {
                       });
                     },
                     buttonText: buttons[index],
-                    color: const Color.fromARGB(255, 0, 128, 17),
+                    color: Colors.green,
                     textColor: Colors.white,
                   );
                 }
@@ -209,21 +209,19 @@ class MyButton extends StatelessWidget {
       onTap: buttontapped,
       child: Padding(
         padding: const EdgeInsets.all(0.2),
-        child: ClipRRect(
-          // borderRadius: BorderRadius.circular(25),
-          child: Card(
-            elevation: 2.0,
-            child: Container(
-              color: color,
-              child: Center(
-                child: Text(
-                  buttonText,
-                  style: TextStyle(
+        child: Card(
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(50.0)),
+          elevation: 5.0,
+          child: Container(
+            decoration: BoxDecoration(color: color, borderRadius: BorderRadius.circular(50.0)),
+            child: Center(
+              child: Text(
+                buttonText,
+                style: GoogleFonts.aBeeZee(
+                    fontSize: 25.0,
                     color: textColor,
-                    fontSize: 25,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
+                    fontWeight: FontWeight.bold),
               ),
             ),
           ),
